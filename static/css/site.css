@@ -1,0 +1,41 @@
+#jtb_logo{
+  width: 100px;
+  height: 70px;
+}
+
+nav.sidebar, .sidebar, .sidebar-offcanvas{
+  background-color: #000;
+  font-size: 30px;
+}
+
+input{
+  border-bottom: 1px solid #CCC;
+}
+
+form i{
+  font-style: normal;
+  font-size: 10px;
+}
+
+.bg-gray{
+  background-color: #EEE;
+}
+
+.bg-dark-gray{
+  background-color: #000;
+}
+
+form small{
+  font-size: 10px;
+  color:red;
+}
+
+/*
+.index-page{
+  background: url("/static/images/tax.png");
+  background-size: cover;
+}
+*/
+.raleway{
+  font-family: 'Raleway', sans-serif;
+}

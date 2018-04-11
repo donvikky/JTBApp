@@ -1,0 +1,52 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>Subsidiary Registrations</h4>
+  <hr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Recent Subsidiary Registrations</h5>
+          <div class="table-responsive">
+            {% if subsidiaries %}
+              <table class="table center-aligned-table">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Company</th>
+                    <th>Parent Company</th>
+                    <th>RC Number</th>
+                    <th>RC Date</th>
+                    <th>TIN</th>
+                    <th>Registered</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for sub in subsidiaries %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{sub.name}}</td>
+                      <td>{{sub.parent_company}}</td>
+                      <td>{{sub.reg_number}}</td>
+                      <td>{{sub.reg_date}}</td>
+                      <td>{{sub.tin}}</td>
+                      <td>{{sub.create_time}}</td>
+                      <td>
+                        <a href="{% url 'dashboard:subsidiary-detail' sub.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                        <a href="{% url 'dashboard:subsidiary-detail-update' sub.pk %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="alert alert-info">There are no subsidiary registrations</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

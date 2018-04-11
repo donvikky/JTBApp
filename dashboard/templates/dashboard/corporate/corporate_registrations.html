@@ -1,0 +1,50 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>Corporate Registrations</h4>
+  <hr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Recent Corporate Registrations</h5>
+          <div class="table-responsive">
+            {% if registrations %}
+              <table class="table center-aligned-table">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Company</th>
+                    <th>RC Number</th>
+                    <th>RC Date</th>
+                    <th>TIN</th>
+                    <th>Registered</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reg in registrations %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{reg.name}}</td>
+                      <td>{{reg.reg_number}}</td>
+                      <td>{{reg.reg_date}}</td>
+                      <td>{{reg.tin}}</td>
+                      <td>{{reg.create_time}}</td>
+                      <td>
+                        <a href="{% url 'dashboard:corporate-detail' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                        <a href="{% url 'dashboard:corporate-detail-update' reg.pk %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="alert alert-info">There are no individual registrations</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

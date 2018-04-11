@@ -1,0 +1,2 @@
+#!/usr/bin/env bash 
+source C:\ProgramData\Miniconda2\Scripts\deactivate "$@"

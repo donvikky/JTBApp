@@ -1,0 +1,103 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>
+    Corporate Registration - {{registration.reg_name| capfirst}} {{registration.reg_no | capfirst}}
+    TIN : {{registration.TIN}}
+  </h4>
+  <div class="row">
+    <div class="col-sm-12">
+      <a href="{% url 'dashboard:corporate-shareholder-create' pk=registration.pk %}" class="float-right btn btn-behance">Add Corporate Shareholder</a>
+      <a href="{% url 'dashboard:individual-shareholder-create' pk=registration.pk %}" class="float-right btn btn-behance mr-2">Add Individual Shareholder</a>      
+    </div>
+  </div>
+  <hr>
+  <table class="table table-striped table-primary">
+    <tr>
+      <th>Name</th>
+      <td>{{registration.name}}</td>
+      <th>Registration Name</th>
+      <td>{{registration.reg_no}}</td>
+    </tr>
+    <tr>
+      <th>Registration Date</th>
+      <td>{{registration.reg_date}}</td>
+      <th>Business Start Date</th>
+      <td>{{registration.start_dater}}</td>
+    </tr>
+    <tr>
+      <th>Company Size</th>
+      <td>{{registration.company_size}}</td>
+      <th>Ownershp Type</th>
+      <td>{{registration.ownership_type}}</td>
+    </tr>
+    <tr>
+      <th>Trade Name</th>
+      <td>{{registration.trade_name}}</td>
+      <th>Sector</th>
+      <td>{{registration.sector}}</td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td>{{registration.phone}}</td>
+      <th>Email</th>
+      <td>{{registration.email}}</td>
+    </tr>
+    <tr>
+      <th>Contact Name</th>
+      <td>{{registration.contact_name}}</td>
+      <th>Address</th>
+      <td>{{registration.address}}</td>
+    </tr>
+  </table>
+
+  <hr>
+  <h4>Individual shareholders</h4>
+  {% if ind_shareholders %}
+    <table class="table">
+      <tr>
+        <th>Surname</th>
+        <th>First name</th>
+        <th>Status</th>
+        <th>Position</th>
+        <th>Share</th>
+      </tr>
+      {% for shr in ind_shareholders %}
+      <tr>
+          <td>{{shr.surname}}</td>
+          <td>{{shr.first_name}}</td>
+          <td>{{shr.status}}</td>
+          <td>{{shr.position}}</td>
+          <td>{{shr.share}}%</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="alert alert-danger">There are no individual shareholders</p>
+  {% endif %}
+
+  <hr>
+  <h4>Corporate shareholders</h4>
+  {% if corp_shareholders %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Trade Name</th>
+        <th>Status</th>
+        <th>Registration Status</th>
+        <th>Share</th>
+      </tr>
+      {% for shr in corp_shareholders %}
+      <tr>
+          <td>{{shr.name}}</td>
+          <td>{{shr.trade_name}}</td>
+          <td>{{shr.status}}</td>
+          <td>{{shr.reg_status}}</td>
+          <td>{{shr.share}}%</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="alert alert-danger">There are no corporate shareholders</p>
+  {% endif %}
+{% endblock body %}

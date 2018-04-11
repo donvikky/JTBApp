@@ -1,0 +1,54 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>
+    Subsidiary Registration - {{subsidiary.reg_name| capfirst}} {{subsidiary.reg_no | capfirst}}
+    TIN : {{registration.TIN}}
+  </h4>
+  <hr>
+  <table class="table table-striped table-primary">
+      <tr>
+          <th>Parent Company</th>
+          <td>{{subsidiary.parent_company}}</td>
+          <th></th>
+          <td></td>
+        </tr>
+    <tr>
+      <th>Name</th>
+      <td>{{subsidiary.name}}</td>
+      <th>Registration Name</th>
+      <td>{{subsidiary.reg_no}}</td>
+    </tr>
+    <tr>
+      <th>Registration Date</th>
+      <td>{{subsidiary.reg_date}}</td>
+      <th>Business Start Date</th>
+      <td>{{subsidiary.start_dater}}</td>
+    </tr>
+    <tr>
+      <th>Company Size</th>
+      <td>{{subsidiary.company_size}}</td>
+      <th>Ownershp Type</th>
+      <td>{{subsidiary.ownership_type}}</td>
+    </tr>
+    <tr>
+      <th>Trade Name</th>
+      <td>{{subsidiary.trade_name}}</td>
+      <th>Sector</th>
+      <td>{{subsidiary.sector}}</td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td>{{subsidiary.phone}}</td>
+      <th>Email</th>
+      <td>{{subsidiary.email}}</td>
+    </tr>
+    <tr>
+      <th>Contact Name</th>
+      <td>{{subsidiary.contact_name}}</td>
+      <th>Address</th>
+      <td>{{subsidiary.address}}</td>
+    </tr>
+  </table>
+
+{% endblock body %}

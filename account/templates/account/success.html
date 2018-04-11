@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Joint Tax Board - Log In</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'images/favicon.png' %}">
+  <!-- endinject -->
+
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth login-full-bg">
+        <div class="row w-100">
+          <div class="col-lg-6 mx-auto">
+            <div class="auth-form-dark text-left p-5">
+              <h2>Login</h2>
+              <h4 class="font-weight-light">Welcome to the JTB Dashboard</h4>
+              <!--<form class="pt-5">-->
+                <p class="alert alert-info">Your registration was successful.
+                You can login <a href="{% url 'account:index' %}">here</a></p>
+              <!--</form>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/misc.js' %}"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <!-- endinject -->
+</body>
+
+</html>

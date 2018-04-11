@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>JTB Dashboard</title>
+  <!-- plugins:css -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'images/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  {% block links %}
+
+  {% endblock links %}
+  {% block scripts %}
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  {% endblock scripts %}
+  <!-- endinject -->
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html"><img src="{% static 'images/logo.png' %}" id='jtb_logo' height=100 alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center bg-dark-gray raleway">
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="{% url 'dashboard:individual-registration' %}" class="nav-link"></i>Individual Registration</a>
+          </li>
+          <li class="nav-item active">
+            <a href="{% url 'dashboard:corporate-registration' %}" class="nav-link"></i>Corporate Registration</a>
+          </li>
+          <li class="nav-item">
+              <a href="{% url 'dashboard:subsidiary-registration' %}" class="nav-link"></i>Subsidiary Registration</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <!--<li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-bell-ring"></i>
+              <span class="count">4</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <a class="dropdown-item">
+                <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+                </p>
+                <span class="badge badge-pill badge-warning float-right">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="icon-info mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium">Application Error</h6>
+                  <p class="font-weight-light small-text">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="icon-speech mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium">Settings</h6>
+                  <p class="font-weight-light small-text">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="icon-envelope mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium">New user registration</h6>
+                  <p class="font-weight-light small-text">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-email-variant"></i>
+              <span class="count">7</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+              <div class="dropdown-item">
+                <p class="mb-0 font-weight-normal float-left">You have 7 unread mails
+                </p>
+                <span class="badge badge-info badge-pill float-right">View all</span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-medium">David Grey
+                    <span class="float-right font-weight-light small-text">1 Minutes ago</span>
+                  </h6>
+                  <p class="font-weight-light small-text">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-medium">Tim Cook
+                    <span class="float-right font-weight-light small-text">15 Minutes ago</span>
+                  </h6>
+                  <p class="font-weight-light small-text">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-medium"> Johnson
+                    <span class="float-right font-weight-light small-text">18 Minutes ago</span>
+                  </h6>
+                  <p class="font-weight-light small-text">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <img class="img-xs rounded-circle" src="images/faces/face4.jpg" alt="">
+            </a>
+          </li>-->
+          <li class="nav-item d-lg-block">
+            <a class="nav-link" href="/accounts/logout">
+              <i class="mdi mdi-power"></i>
+              <span>Log out</span>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper raleway">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <!--<div class="profile-image"> <img src="images/faces/face4.jpg" alt="image"/> <span class="online-status online"></span> </div>-->
+              <div class="profile-name">
+                <p class="name">{{user.first_name}}{{user.last_name}}</p>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:index' %}"><i class="mdi mdi-view-dashboard mr-2"></i><span class="menu-title">Dashboard</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:individual-registrations' %}"><i class="mdi mdi-account mr-2"></i> <span class="menu-title">Individual Registrations</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:corporate-registrations' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Corporate Registrations</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:subsidiary-registrations' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Subsidiary Registrations</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:tax-offices' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Tax Offices</span></a></li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages"><span class="menu-title">Registration Reports</span><i class="menu-arrow"></i></a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'dashboard:corporate-taxpayer-report' %}">Tax Office Corporate Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'dashboard:individual-taxpayer-report' %}">Tax Office Individual Report</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-ticket-account mr-2"></i><span class="menu-title">Tickets</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-email mr-2"></i><span class="menu-title">Emails</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-comment-text mr-2"></i><span class="menu-title">SMS</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-lock-open mr-2"></i><span class="menu-title">Reset Password</span></a></li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+          <div class="content-wrapper">
+            {% block body%}
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                  <div class="card card-statistics">
+                    <div class="card-body">
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <i class="mdi mdi-account text-danger icon-lg"></i>
+                        </div>
+                        <div class="float-right">
+                          <p class="card-text text-right">Individuals</p>
+                          <div class="fluid-container">
+                            <h3 class="card-title font-weight-bold text-right mb-0">{{individual_count}}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-muted mt-3">
+                        <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> {{individual_today}} registrations today
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                  <div class="card card-statistics">
+                    <div class="card-body">
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <i class="mdi mdi-account-multiple-outline text-warning icon-lg"></i>
+                        </div>
+                        <div class="float-right">
+                          <p class="card-text text-right">Corporates</p>
+                          <div class="fluid-container">
+                            <h3 class="card-title font-weight-bold text-right mb-0">{{corporate_count}}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-muted mt-3">
+                        <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> {{corporate_today}} registrations today
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                  <div class="card card-statistics">
+                    <div class="card-body">
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <i class="mdi mdi-account-location text-teal icon-lg"></i>
+                        </div>
+                        <div class="float-right">
+                          <p class="card-text text-right">Users</p>
+                          <div class="fluid-container">
+                            <h3 class="card-title font-weight-bold text-right mb-0">{{user_count}}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-muted mt-3">
+                        <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Total Users
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                  <div class="card card-statistics">
+                    <div class="card-body">
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <i class="mdi mdi-ticket-account text-info icon-lg"></i>
+                        </div>
+                        <div class="float-right">
+                          <p class="card-text text-right">Tickets</p>
+                          <div class="fluid-container">
+                            <h3 class="card-title font-weight-bold text-right mb-0">0</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-muted mt-3">
+                        <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Unresolved Tickets
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title mb-4">Registrations</h5>
+                      <div id="registration-container" height="100px"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title mb-4">Trends</h5>
+                      <div id="trend-container" height="100px"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title mb-4">Recent Individual Registrations</h5>
+                      <div class="table-responsive">
+                        {% if individual_registrations %}
+                          <table class="table center-aligned-table">
+                            <thead>
+                              <tr>
+                                <th class="border-bottom-0">SN</th>
+                                <th class="border-bottom-0">Surname</th>
+                                <th class="border-bottom-0">First Name</th>
+                                <th class="border-bottom-0">Company</th>
+                                <th class="border-bottom-0">TIN</th>
+                                <th class="border-bottom-0">Date of Registration</th>
+                                <th class="border-bottom-0"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for reg in individual_registrations %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{reg.surname | capfirst}}</td>
+                                  <td>{{reg.first_name | capfirst}}</td>
+                                  <td>{{reg.tax_payer_company | capfirst}}</td>
+                                  <td>{{reg.tin}}</td>
+                                  <td>{{reg.create_time}}</td>
+                                  <td><a href="{% url 'dashboard:individual-detail' reg.pk %}" class="btn btn-outline-success btn-sm">View</a></td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        {% else %}
+                          <p class="alert alert-info">There are no individual registrations</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title mb-4">Recent Corporate Registrations</h5>
+                      <div class="table-responsive">
+                        {% if corporate_registrations %}
+                          <table class="table center-aligned-table">
+                            <thead>
+                              <tr>
+                                <th>SN</th>
+                                <th>Company</th>
+                                <th>RC Number</th>
+                                <th>RC Date</th>
+                                <th>Business Start</th>
+                                <th>TIN</th>
+                                <th>Registered</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for reg in corporate_registrations %}
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{reg.name}}</td>
+                                  <td>{{reg.reg_number}}</td>
+                                  <td>{{reg.reg_date}}</td>
+                                  <td>{{reg.start_date}}</td>
+                                  <td>{{reg.tin}}</td>
+                                  <td>{{reg.create_time}}</td>
+                                  <td><a href="{% url 'dashboard:corporate-detail' reg.pk %}" class="btn btn-outline-success btn-sm">View</a></td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        {% else %}
+                          <p class="alert alert-info">There are no individual registrations</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            {% endblock body %}
+          </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.bootstrapdash.com/" target="_blank">Fourcore Technologies</a>. All rights reserved.</span>
+            <!--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>-->
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/misc.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+{% block chart %}
+<script type="text/javascript">
+// Build the chart
+
+Highcharts.chart('registration-container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Distribution'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Individual Registrations',
+            y: {{individual_count}}
+        }, {
+            name: 'Corporate Registrations',
+            y: {{corporate_count}},
+            sliced: true,
+            selected: true,
+        }]
+    }]
+});
+
+
+Highcharts.chart('trend-container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Monthly Registration'
+    },
+
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'Count'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+    },
+    series: [{
+        name: 'Individual',
+        marker: {
+            symbol: 'square'
+        },
+        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+            y: 26.5,
+            marker: {
+                symbol: 'circle'
+            }
+        }, 23.3, 18.3, 13.9, 9.6]
+
+    }, {
+        name: 'Corporate',
+        marker: {
+            symbol: 'diamond'
+        },
+        data: [{
+            y: 3.9,
+            marker: {
+                symbol: 'circle'
+            }
+        }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+    }]
+});
+</script>
+{% endblock chart %}
+
+  <!-- End custom js for this page-->
+</body>
+
+</html>

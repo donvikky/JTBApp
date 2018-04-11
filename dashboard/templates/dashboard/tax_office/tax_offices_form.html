@@ -1,0 +1,47 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>Tax Office Form</h4>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+      <div class="form-group row">
+          <div class="col-sm-4">
+            <i>State</i>
+            {{form.state}}
+            <small class="text-danger">{{form.state.errors}}</small>
+          </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-4">
+            <i>LGA</i>
+          {{form.lga}}
+          <small class="text-danger">{{form.lga.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          {{form.name}}
+          <small class="text-danger">{{form.name.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          {{form.address}}
+          <small class="text-danger">{{form.address.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          <i>Status</i>
+          {{form.status}}
+          <small class="text-danger">{{form.status.errors}}</small>
+        </div>
+    </div>      
+    <div class="form-group row">
+    <div class="col-sm-12">
+        <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+    </div>
+  </form>
+{% endblock body %}

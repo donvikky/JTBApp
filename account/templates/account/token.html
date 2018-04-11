@@ -1,0 +1,13 @@
+{% extends "account/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <p class="alert alert-success">Use your access token to connect to the JTB Portal</p>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Access Token</th>
+    </tr>
+    <tr>
+      <td>{{token}}</td>
+    </tr>
+  </table>
+{% endblock body %}

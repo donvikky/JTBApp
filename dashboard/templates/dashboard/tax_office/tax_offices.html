@@ -1,0 +1,50 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+<h4>Tax offices</h4>
+<hr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Tax Offices</h5>
+          <a href="{% url 'dashboard:tax-office-create' %}" class="btn btn-behance float-right mb-2">Create Tax Office</a>
+          <div class="table-responsive">
+            {% if offices %}
+              <table class="table center-aligned-table">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>State</th>
+                    <th>LGA</th>
+                    <th>Office Name</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for office in offices %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{office.state}}</td>
+                      <td>{{office.lga}}</td>
+                      <td>{{office.name}}</td>
+                      <td>{{office.address}}</td>
+                      <td>{{office.status}}</td>
+                      <td>
+                        <a href="{% url 'dashboard:tax-office-detail' office.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                        <a href="{% url 'dashboard:tax-office-update' office.pk %}" class="btn btn-outline-warning btn-sm">Update</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="alert alert-info">There are no tax offices in the database</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

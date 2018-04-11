@@ -1,0 +1,106 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>Corporate TaxPayer Registration Form</h4>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+        <div class="col-sm-4">
+          {{form.name}}
+          <small class="text-danger">{{form.name.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.trade_name}}
+          <small class="text-danger">{{form.trade_name.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.tin}}
+          <small class="text-danger">{{form.tin.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          <i>Company size</i>
+          {{form.company_size}}
+          <small class="text-danger">{{form.company_size.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          <i>Ownership Type</i>
+          {{form.ownership_type}}
+          <small class="text-danger">{{form.ownership_type.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          <i>&nbsp;</i>
+          {{form.contact_name}}
+          <small class="text-danger">{{form.contact_name.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          <i>Registration Status</i>
+          {{form.reg_status}}
+          <small class="text-danger">{{form.reg_status.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          <i>Registration Date</i>
+          {{form.reg_date}}
+          <small class="text-danger">{{form.reg_date.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          <i>Business Start Date</i>
+          {{form.start_date}}
+          <small class="text-danger">{{form.start_date.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          {{form.line_of_business}}
+          <small class="text-danger">{{form.line_of_business.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.sector}}
+          <small class="text-danger">{{form.sector.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.contact_name}}
+          <small class="text-danger">{{form.contact_name.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+          {{form.phone}}
+          <small class="text-danger">{{form.phone.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.email}}
+          <small class="text-danger">{{form.email.errors}}</small>
+        </div>
+        <div class="col-sm-4">
+          {{form.reg_no}}
+          <small class="text-danger">{{form.reg_no.errors}}</small>
+        </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        {{form.address}}
+        <small class="text-danger">{{form.address.errors}}</small>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <i>Tax Office</i>
+        <select name="tax_office" class="form-control">
+          <option value="{{office.id}}">{{office.name}}</option>
+        </select>
+        <small>{{form.tax_office.errors}}</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="submit" class="btn btn-success" value="Submit">
+      </div>
+    </div>
+  </form>
+{% endblock body %}

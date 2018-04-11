@@ -1,0 +1,62 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+<div class="row">
+  <div class="col-sm-3">
+    <strong>Individual Registrations</strong>
+  </div>
+  <div class="col-sm-6">
+    <form method="POST" class="form-inline">
+      {% csrf_token %}
+      <input type="date" class="form-control mb-2 mr-sm-2 offset-sm-5" id="ind-search" placeholder="Date">
+      <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+  </div>
+</div>
+  <hr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Individual Registrations</h5>
+          <div class="table-responsive">
+            {% if registrations %}
+              <table class="table center-aligned-table">
+                <thead>
+                  <tr>
+                    <th class="border-bottom-0">SN</th>
+                    <th class="border-bottom-0">Surname</th>
+                    <th class="border-bottom-0">First Name</th>
+                    <th class="border-bottom-0">Company</th>
+                    <th class="border-bottom-0">TIN</th>
+                    <th class="border-bottom-0">Date of Registration</th>
+                    <th class="border-bottom-0"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reg in registrations %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{reg.surname | capfirst}}</td>
+                      <td>{{reg.first_name | capfirst}}</td>
+                      <td>{{reg.tax_payer_company | capfirst}}</td>
+                      <td>{{reg.tin}}</td>
+                      <td>{{reg.create_time}}</td>
+                      <td>
+                        <a href="{% url 'dashboard:individual-detail' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                        <a href="{% url 'dashboard:individual-detail-update' reg.pk %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="alert alert-info">There are no individual registrations</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

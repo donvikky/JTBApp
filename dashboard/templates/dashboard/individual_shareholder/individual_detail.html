@@ -1,0 +1,48 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>
+    Individual Registration - {{registration.surname | capfirst}} {{registration.first_name | capfirst}}
+    TIN : {{registration.TIN}}
+  </h4>
+  <hr>
+  <table class="table table-striped table-primary">
+    <tr>
+      <th>Surname</th>
+      <td>{{registration.surname}}</td>
+      <th>First Name</th>
+      <td>{{registration.first_name}}</td>
+    </tr>
+    <tr>
+      <th>Date of birth</th>
+      <td>{{registration.dob}}</td>
+      <th>Gender</th>
+      <td>{{registration.gender}}</td>
+    </tr>
+    <tr>
+      <th>State of Origin</th>
+      <td>{{registration.state_of_origin}}</td>
+      <th>LGA</th>
+      <td>{{registration.lga_of_origin}}</td>
+    </tr>
+    <tr>
+      <th>Company</th>
+      <td>{{registration.tax_payer_company}}</td>
+      <th>Occupation</th>
+      <td>{{registration.occupation}}</td>
+    </tr>
+    <tr>
+      <th>Employment Status</th>
+      <td>{{registration.employment_status}}</td>
+      <th>Residential Address</th>
+      <td>{{registration.residential_address}}</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{registration.phone}}</td>
+      <th>Email</th>
+      <td>{{registration.email}}</td>
+    </tr>
+  </table>
+
+{% endblock body %}
