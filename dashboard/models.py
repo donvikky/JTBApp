@@ -420,4 +420,5 @@ class Bvn(models.Model):
         '{} {}'.format(self.surname, self.first_name)
 
     class Meta:
-        verbose_name = 'BVN Records'
+        verbose_name = 'BVN Record'
+        verbose_name_plural = 'BVN Records'
