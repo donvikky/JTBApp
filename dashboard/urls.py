@@ -29,4 +29,9 @@ urlpatterns = [
     path('individual-taxpayer-report-view/<int:tax_office>/<start_date>/<end_date>/', views.IndividualTaxPayerReportView.as_view(),name='individual-taxpayer-report-view'),
     path('corporate-taxpayer-report', views.CorporateTaxPayerReport.as_view(),name='corporate-taxpayer-report'),
     path('corporate-taxpayer-report-view/<int:tax_office>/<start_date>/<end_date>/', views.CorporateTaxPayerReportView.as_view(),name='corporate-taxpayer-report-view'),
+    path('biometric-capture/<int:pk>', views.BiometricCreateView.as_view(),name='biometric-capture'),
+    path('bvn-initiate-data', views.BVNInitiateData.as_view(),name='bvn-initiate-data'),
+    path('bvn-request-data', views.BVNRequestData.as_view(),name='bvn-request-data'),
+    path('bvn-list-data', views.BVNRequestData.as_view(),name='bvn-list-data'),
+    path('bvn-detail-data/<int:pk>/', views.BVNDetailData.as_view(),name='bvn-detail-data'),
 ]

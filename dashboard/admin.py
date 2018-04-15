@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dashboard.models import IndividualTaxPayer, CorporateTaxPayer, TaxOffice
+from dashboard.models import IndividualTaxPayer, CorporateTaxPayer, TaxOffice, Agency
 
 # Register your models here.
 class IndividualAdmin(admin.ModelAdmin):
@@ -30,6 +30,17 @@ class TaxOfficeAdmin(admin.ModelAdmin):
         obj.update_user = request.user
         super(TaxOfficeAdmin, self).save_model(request, obj, form, change)
 
+class AgencyAdmin(admin.ModelAdmin):
+    exclude = ('create_time','create_user','update_time','update_user')
+    list_display = ('name','abbreviation','url','description')
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.create_user = request.user
+        obj.update_user = request.user
+        super(AgencyAdmin, self).save_model(request, obj, form, change)
+
 admin.site.register(IndividualTaxPayer, IndividualAdmin)
 admin.site.register(CorporateTaxPayer, CorporateAdmin)
 admin.site.register(TaxOffice, TaxOfficeAdmin)
+admin.site.register(Agency, AgencyAdmin)

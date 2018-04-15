@@ -2,16 +2,16 @@
 {% load staticfiles %}
 {% block body %}
   <h4>
-    Individual Registration - {{registration.surname | capfirst}} {{registration.first_name | capfirst}}
-    TIN : {{registration.TIN}}
+    BVN Registration - {{registration.surname | capfirst}} {{registration.first_name | capfirst}}    
   </h4>
+  <h4>BVN - {{registration.bvn}}</h4>
   <hr>
-  <div class="row">
+  <!--<div class="row">
     <div class="col-sm-12">
       <a href="{% url 'dashboard:biometric-capture' pk=registration.pk %}" class="float-right btn btn-behance mr-2">Capture Biometrics</a>      
     </div>
   </div>
-  <hr>
+  <hr>-->
   <table class="table table-striped table-primary">
     <tr>
       <th>Surname</th>
@@ -51,29 +51,5 @@
     </tr>
   </table>
 
-  <hr>
-  BIOMETRIC information
-  <hr>
-  {% if biometric %}
-    <table class="table">
-      <tr>
-        <th>Image</th>
-        <td><img src="{{biometric.pic}}" alt="" width="120" height="120"></td>
-      </tr>
-      <tr>
-          <th>Fingerprint 1</th>
-          <td><img src="data:image/png;base64,{{biometric.f1}}" alt="" width="120" height="120"></td>
-        </tr>
-        <tr>
-            <th>Fingerprint 2</th>
-            <td><img src="data:image/png;base64,{{biometric.f2}}" alt="" width="120" height="120"></td>
-        </tr>
-        <tr>
-            <th>Fingerprint 3</th>
-            <td><img src="data:image/png;base64,{{biometric.f3}}" alt="" width="120" height="120"></td>
-          </tr>
-    </table>
-  {% else %}
-    <p class="alert alert-danger">No biometric information has been captured for this Individual Tax Payer</p>
-  {% endif %}
+  
 {% endblock body %}

@@ -2,12 +2,12 @@ from django import forms
 from django.forms import ModelForm
 from django.forms import Form
 from dashboard.models import (IndividualTaxPayer, CorporateTaxPayer, TaxOffice, SubsidiaryTaxPayer,
-IndividualShareholder, CorporateShareholder)
+IndividualShareholder, CorporateShareholder, Biometric)
 
 class IndividualTaxPayerForm(ModelForm):
     class Meta:
         model = IndividualTaxPayer
-        exclude = ('create_time','create_user','update_time','update_user','tin')
+        exclude = ('create_time','create_user','update_time','update_user','tin','agency')
         widgets = {
             'surname':forms.TextInput(attrs={'class':'form-control','placeholder':'surname'}),
             'first_name':forms.TextInput(attrs={'class':'form-control','placeholder':'first name'}),
@@ -30,7 +30,7 @@ class IndividualTaxPayerForm(ModelForm):
 class CorporateTaxPayerForm(ModelForm):
     class Meta:
         model = CorporateTaxPayer
-        exclude = ('create_time','create_user','update_time','update_user')
+        exclude = ('create_time','create_user','update_time','update_user','agency')
         widgets = {
             'name':forms.TextInput(attrs={'class':'form-control','placeholder':'name'}),
             'address':forms.Textarea(attrs={'class':'form-control','placeholder':'address'}),
@@ -127,10 +127,28 @@ class CorporateShareholderForm(ModelForm):
 
 class IndividualTaxPayerReportForm(Form):
     tax_office = forms.CharField(label='Tax Office',max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'Start Date'}))
-    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'End Date'}))
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'Start Date','type':'date'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'End Date','type':'date'}))
 
 class CorporateTaxPayerReportForm(Form):
     tax_office = forms.CharField(label='Tax Office',max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'Start Date'}))
-    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'End Date'}))
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'Start Date','type':'date'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','placeholder':'End Date','type':'date'}))
+
+class BiometricForm(ModelForm):
+    class Meta:
+        model = Biometric
+        exclude = ('create_time','create_user','update_time','update_user')
+        widgets = {
+            'pic':forms.Textarea(attrs={'class':'form-control','placeholder':'Passport data','id':'pic_data'}),            
+            'f1':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 1 Data '}),
+            'f2':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 2 Data'}),
+            'f3':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 3 Data'}),
+            'f4':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 4 Data'}),
+            'f5':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 5 Data'}),
+            'f6':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 6 Data'}),
+            'f7':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 7 Data'}),
+            'f8':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 8 Data'}),
+            'f9':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 9 Data'}),
+            'f10':forms.Textarea(attrs={'class':'form-control','placeholder':'Finger 10 Data'}),
+        }

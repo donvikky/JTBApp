@@ -1,0 +1,9 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+  <h4>Pull Bank Verification Number (BVN) Records</h4>
+  <hr>
+  <a href="{% url 'dashboard:bvn-request-data' %}" class="btn btn-behance" onclick="confirm('Do you want to pull records from the BVN Database?')">
+      Pull information from BVN Database
+</a>
+{% endblock body %}

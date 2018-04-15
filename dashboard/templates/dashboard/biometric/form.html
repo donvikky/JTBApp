@@ -1,0 +1,86 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+<script src="/static/js/webcam.js"></script>
+<script src="/static/js/captures.js"></script>
+
+  <h4>{{tax_payer}} - Biometric Capture  Form</h4>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-12">
+                <div id="my_camera" style="width:320px; height:240px;border:1px solid black;"></div>
+                <div id="my_result"></div>            
+        </div>
+    </div>
+
+      <div class="form-group row">
+          <div class="col-sm-4">
+            <i>Tax Payer</i>
+            <select name="tax_payer" id="" class="form-control">
+              <option value="{{tax_payer.id}}">{{tax_payer.surname}} {{tax_payer.first_name}}</option>
+            </select>
+            <small class="text-danger">{{form.tax_payer.errors}}</small>
+          </div>
+      </div>
+      <hr>
+      <div class="form-group row">
+            <div class="col-sm-2">
+                <img class="finger-print-placeholder" src="{% static 'images/person.png' %}" id="pic" alt="">
+            </div>
+            <div class="col-sm-4">
+            {{form.pic}}
+            <small class="text-danger">{{form.pic.errors}}</small>
+            </div>
+            <div class="col-sm-4">
+                <a href="javascript:void(take_snapshot())" class="btn btn-github">Capture Picture</a>
+            </div>
+        </div>
+      {% for field in form  %}
+        
+        {% if field.name != 'tax_payer' and field.name != 'pic' %}
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <img class="finger-print-placeholder" src="{% static 'images/fingerprint.png' %}" id="{{forloop.counter}}" alt="">
+                </div>
+                <div class="col-sm-4">
+                {{field}}
+                <small class="text-danger">{{field.errors}}</small>
+                </div>
+                <div class="col-sm-4">
+                    <a href="#" onclick="captureFP({{forloop.counter}})" class="btn btn-github">Capture Image</a>
+                </div>
+            </div>
+        {% else %}
+        {% endif %}
+        
+      {% endfor %}
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="submit" class="btn btn-success" value="Submit">
+        </div>        
+      </div>      
+  </form>
+  
+
+  <script language="JavaScript">
+        Webcam.attach('#my_camera');
+        
+        function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+               // document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+               //alert(data_uri);
+               document.getElementById('pic').src = data_uri;
+               document.getElementById('pic_data').innerText = data_uri;
+               document.getElementById('pic').width = "120";
+               document.getElementById('pic').height = "120";
+
+            } );
+        }
+    </script>
+    
+    
+
+{% endblock body %}
+

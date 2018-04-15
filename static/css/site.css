@@ -39,3 +39,8 @@ form small{
 .raleway{
   font-family: 'Raleway', sans-serif;
 }
+
+.finger-print-placeholder{
+  width: 120px;
+  height: 120px;
+}

@@ -194,15 +194,23 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:individual-registrations' %}"><i class="mdi mdi-account mr-2"></i> <span class="menu-title">Individual Registrations</span></a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:corporate-registrations' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Corporate Registrations</span></a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:subsidiary-registrations' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Subsidiary Registrations</span></a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:tax-offices' %}"><i class="mdi mdi-account-multiple mr-2"></i><span class="menu-title">Tax Offices</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:tax-offices' %}"><i class="mdi mdi-home mr-2"></i><span class="menu-title">Tax Offices</span></a></li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages"><span class="menu-title">Registration Reports</span><i class="menu-arrow"></i></a>
-            <div class="collapse" id="general-pages">
+            <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false" aria-controls="reports"><i class="mdi mdi-file-document"></i><span class="menu-title">Registration Reports</span><i class="menu-arrow"></i></a>
+            <div class="collapse" id="reports">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{% url 'dashboard:corporate-taxpayer-report' %}">Tax Office Corporate Report</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{% url 'dashboard:individual-taxpayer-report' %}">Tax Office Individual Report</a></li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#agencies" aria-expanded="false" aria-controls="agencies"><i class="mdi mdi-domain"></i><span class="menu-title">Agencies</span><i class="menu-arrow"></i></a>
+              <div class="collapse" id="agencies">
+              <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'dashboard:bvn-initiate-data' %}">BVN</a></li>
+              </ul>
+            </div>        
           </li>
           <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-ticket-account mr-2"></i><span class="menu-title">Tickets</span></a></li>
           <li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-email mr-2"></i><span class="menu-title">Emails</span></a></li>
