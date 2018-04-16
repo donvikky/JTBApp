@@ -392,7 +392,7 @@ class BVNRequestData(StaffMemberMixin, TemplateView):
                     b.tax_office = request.user.profile.office
                     b.agency = Agency.objects.get(abbreviation='BVN')                    
 
-                    rec = Bvn.objects.filter(bvn=record['bvn']) # check if this record exists
+                    rec = Bvn.objects.filter(surname=record['surname'], first_name=record['first_name'],bvn=record['bvn']) # check if this record exists
                     if rec:
                         for r in rec:                        
                             old_records.append(r)                        
