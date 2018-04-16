@@ -35,34 +35,8 @@
       <p class="alert alert-danger">No new BVN records were retrieved</p>
 {% endif %}
 
-{% if old_records %}
-      <hr>
-      <h4>{{old_records | length}} Existing Records Retrieved</h4>
-      <hr>
-    <table class="table center-aligned-table">
-        <thead>
-          <tr>
-            <th class="border-bottom-0">SN</th>
-            <th class="border-bottom-0">Surname</th>
-            <th class="border-bottom-0">First Name</th>
-            <th class="border-bottom-0">BVN</th>
-            <th class="border-bottom-0">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for reg in old_records %}
-            <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{reg.surname | capfirst}}</td>
-              <td>{{reg.first_name | capfirst}}</td>
-              <td>{{reg.bvn}}</td>
-              <td>
-                <a href="{% url 'dashboard:bvn-detail-data' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-    </table>
+{% if old_records  %}
+      <p class="alert alert-info">{{old_records | length}} old BVN records were retrieved</p>
 {% endif %}
 
 {% if not old_records %}
