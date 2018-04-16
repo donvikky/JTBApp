@@ -407,8 +407,10 @@ class BVNRequestData(StaffMemberMixin, TemplateView):
         return render(request, self.template_name, {'message':message,'old_records':old_records,
         'new_records':new_records})
 
-class BVNListData(StaffMemberMixin, View):
-    pass
+class BVNListData(StaffMemberMixin, ListView):
+    model = Bvn
+    template_name = 'dashboard/bvn/list.html'
+    context_object_name = 'registrations'
 
 
 class BVNDetailData(StaffMemberMixin, DetailView):

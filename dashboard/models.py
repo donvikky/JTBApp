@@ -415,7 +415,8 @@ class Bvn(models.Model):
     create_user = models.ForeignKey(User,related_name='bvn_creater',null=True,on_delete=models.CASCADE)
     update_time = models.DateTimeField(auto_now=True)
     update_user = models.ForeignKey(User,related_name='bvn_updater',null=True,on_delete=models.CASCADE)
-    
+    generated = models.NullBooleanField(default=False)
+
     def __str__(self):
         '{} {}'.format(self.surname, self.first_name)
 

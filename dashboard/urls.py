@@ -32,6 +32,6 @@ urlpatterns = [
     path('biometric-capture/<int:pk>', views.BiometricCreateView.as_view(),name='biometric-capture'),
     path('bvn-initiate-data', views.BVNInitiateData.as_view(),name='bvn-initiate-data'),
     path('bvn-request-data', views.BVNRequestData.as_view(),name='bvn-request-data'),
-    path('bvn-list-data', views.BVNRequestData.as_view(),name='bvn-list-data'),
+    path('bvn-list-data', views.BVNListData.as_view(),name='bvn-list-data'),
     path('bvn-detail-data/<int:pk>/', views.BVNDetailData.as_view(),name='bvn-detail-data'),
 ]

@@ -1,0 +1,58 @@
+{% extends "dashboard/index.html" %}
+{% load staticfiles %}
+{% block body %}
+<div class="row">
+  <div class="col-sm-3">
+    <strong>BVN Registrations</strong>
+  </div>
+  <div class="col-sm-6">
+    <form method="POST" class="form-inline">
+      {% csrf_token %}
+      <input type="date" class="form-control mb-2 mr-sm-2 offset-sm-5" id="ind-search" placeholder="Date">
+      <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+    <a href="{% url 'dashboard:bvn-initiate-data' %}" class="btn btn-behance float-right">Check for new BVN Records</a>
+  </div>
+</div>
+  <hr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">BVN Registrations</h5>
+          <div class="table-responsive">
+            {% if registrations %}
+              <table class="table center-aligned-table">
+                <thead>
+                  <tr>
+                    <th class="border-bottom-0">SN</th>
+                    <th class="border-bottom-0">Surname</th>
+                    <th class="border-bottom-0">First Name</th>
+                    <th class="border-bottom-0">BVN</th>
+                    <th class="border-bottom-0">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reg in registrations %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{reg.surname | capfirst}}</td>
+                      <td>{{reg.first_name | capfirst}}</td>
+                      <td>{{reg.bvn}}</td>
+                      <td>
+                        <a href="{% url 'dashboard:bvn-detail-data' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p class="alert alert-info">There are no BVN registrations</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}
