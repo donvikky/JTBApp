@@ -398,7 +398,7 @@ class Bvn(models.Model):
     marital_status = models.CharField('Marital Status', max_length=20, choices=MARITAL_STATUS_CHOICES)
     gender = models.CharField('Gender', max_length=20, choices=GENDER_CHOICES)
     dob = models.DateField('Date of Birth')
-    bvn = models.CharField('BVN', max_length=10,blank=True, null=True, unique=True)
+    bvn = models.CharField('BVN', max_length=10,blank=True, null=True)
     lga_of_origin = models.ForeignKey(Lga,related_name='bvn_lga',on_delete=models.CASCADE)
     state_of_origin = models.ForeignKey(State,related_name='bvn_state',on_delete=models.CASCADE)
     nationality = models.ForeignKey(Country,related_name='bvn_nationality',on_delete=models.CASCADE)
