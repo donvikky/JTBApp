@@ -13,7 +13,7 @@ from django.urls import reverse, reverse_lazy
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 import requests
-
+from pprint import pprint
 
 # Create your views here.
 class StaffMemberMixin(UserPassesTestMixin):
@@ -453,6 +453,7 @@ class BVNGenerateTIN(StaffMemberMixin, TemplateView):
                 t.email = bvn.email
                 t.tax_office = request.user.profile.office
                 t.agency = Agency.objects.get(abbreviation='BVN')
+                t.create_user = request.user
                 t.save()
 
                 # append to new registrations list
@@ -461,7 +462,9 @@ class BVNGenerateTIN(StaffMemberMixin, TemplateView):
                 # update status of saved record on bvn table
                 rec = Bvn.objects.get(surname=bvn.surname, dob=bvn.dob, gender=bvn.gender)
                 rec.generated = True
+                rec.update_user = request.user
                 rec.save()
+                pprint(vars(rec))
         return render(request, self.template_name,{'old_records':old_records,
             'registrations': registrations})
 
