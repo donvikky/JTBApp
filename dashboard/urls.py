@@ -34,4 +34,5 @@ urlpatterns = [
     path('bvn-request-data', views.BVNRequestData.as_view(),name='bvn-request-data'),
     path('bvn-list-data', views.BVNListData.as_view(),name='bvn-list-data'),
     path('bvn-detail-data/<int:pk>/', views.BVNDetailData.as_view(),name='bvn-detail-data'),
+    path('bvn-generate-tin', views.BVNGenerateTIN.as_view(),name='bvn-generate-tin'),
 ]

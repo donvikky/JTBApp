@@ -3,7 +3,6 @@
 {% block body %}
 <div class="row">
   <div class="col-sm-3">
-    <strong>BVN Registrations</strong>
   </div>
   <div class="col-sm-6">
     <form method="POST" class="form-inline">
@@ -13,16 +12,12 @@
     </form>    
   </div>
 </div>
-<div class="row">
-  <a href="{% url 'dashboard:bvn-initiate-data' %}" class="col-md-3 btn btn-behance float-right mr-2">Check for new BVN Records</a>
-  <a href="{% url 'dashboard:bvn-generate-tin' %}" class="col-md-3 btn btn-success float-right">Generate TIN for BVN Records</a>
-</div>
   <hr>
   <div class="row">
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title mb-4">BVN Registrations</h5>
+          <h5 class="card-title mb-4">Generated TIN(s)</h5>
           <div class="table-responsive">
             {% if registrations %}
               <table class="table center-aligned-table">
@@ -31,7 +26,7 @@
                     <th class="border-bottom-0">SN</th>
                     <th class="border-bottom-0">Surname</th>
                     <th class="border-bottom-0">First Name</th>
-                    <th class="border-bottom-0">BVN</th>
+                    <th class="border-bottom-0">TIN</th>
                     <th class="border-bottom-0">Action</th>
                   </tr>
                 </thead>
@@ -41,16 +36,16 @@
                       <td>{{forloop.counter}}</td>
                       <td>{{reg.surname | capfirst}}</td>
                       <td>{{reg.first_name | capfirst}}</td>
-                      <td>{{reg.bvn}}</td>
+                      <td>{{reg.tin}}</td>
                       <td>
-                        <a href="{% url 'dashboard:bvn-detail-data' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
+                        <a href="{% url 'dashboard:individual-detail' reg.pk %}" class="btn btn-outline-success btn-sm">View</a>
                       </td>
                     </tr>
                   {% endfor %}
                 </tbody>
               </table>
             {% else %}
-              <p class="alert alert-info">There are no BVN registrations</p>
+              <p class="alert alert-info">No New TIN was generated</p>
             {% endif %}
           </div>
         </div>

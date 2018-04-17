@@ -420,5 +420,51 @@ class BVNDetailData(StaffMemberMixin, DetailView):
 
 
 class BVNGenerateTIN(StaffMemberMixin, TemplateView):
-    pass
+    template_name = 'dashboard/bvn/generate.html'
+
+    def get(self, request):
+        # get all bvn data with ungenerated TIN
+        old_records = []
+        registrations = []
+        bvns = Bvn.objects.filter(generated=False)
+        
+        for bvn in bvns:
+            # check if this record already exists on the Individual Tax Payer Table
+            payer = IndividualTaxPayer.objects.filter(surname=bvn.surname, dob=bvn.dob, gender=bvn.gender)
+            if payer: # append to old records
+                old_records.append(payer)
+            else:
+                # create new individual taxpayer record
+                t = IndividualTaxPayer()
+                t.surname = bvn.surname
+                t.first_name = bvn.first_name
+                t.other_name = bvn.other_name
+                t.marital_status = bvn.marital_status
+                t.gender = bvn.gender
+                t.dob = bvn.dob
+                t.lga_of_origin = bvn.lga_of_origin
+                t.state_of_origin = bvn.state_of_origin
+                t.nationality = bvn.nationality
+                t.tax_payer_company = 'N/A'
+                t.occupation = bvn.occupation
+                t.employment_status = bvn.employment_status
+                t.residential_address = bvn.residential_address
+                t.phone = bvn.phone
+                t.email = bvn.email
+                t.tax_office = request.user.profile.office
+                t.agency = Agency.objects.get(abbreviation='BVN')
+                t.save()
+
+                # append to new registrations list
+                registrations.append(t)
+
+                # update status of saved record on bvn table
+                rec = Bvn.objects.get(surname=bvn.surname, dob=bvn.dob, gender=bvn.gender)
+                rec.generated = True
+                rec.save()
+        return render(request, self.template_name,{'old_records':old_records,
+            'registrations': registrations})
+
+
+        
 
