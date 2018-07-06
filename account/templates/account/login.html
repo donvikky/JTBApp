@@ -17,19 +17,24 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'images/favicon.png' %}">
   <!-- endinject -->
-
+  <style>
+    body{
+      background-color: darkgreen;
+    }
+  </style>
 
 </head>
 
-<body>
+<body class="login-page">
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth login-full-bg">
         <div class="row w-100">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-dark text-left p-5">
-              <h2>Login</h2>
-              <h4 class="font-weight-light">Welcome to the JTB Dashboard</h4>
+              <div class="text-center mb-2"><img width="120px" height="90px" src="{% static 'images/logo.png' %}" alt=""></div>
+              <h4 class="text-center">Joint Tax Board Application</h4>
+              <h5 class="font-weight-light text-center">Login</h5>
               <!--<form class="pt-5">-->
                 <form method="POST">
                   {% csrf_token %}
